@@ -395,6 +395,9 @@ class listener implements EventSubscriberInterface
 		{
 			return;
 		}
-		else return ($appform_post);
+		else 
+		{
+			return $appform_post;
+		}
 	}
 }
