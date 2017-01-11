@@ -365,7 +365,7 @@ class admin_controller
 					$type = '<select style="border-radius: 5px;" class="inputbox" name="templatefield_' . $row['name'] . '" tabindex="' . $row['ndx_order'] . '">';
 					$type .= '<option value="">----------------</option>';
 					$select_option = explode(',', $row['options']);
-					foreach($select_option as $value)
+					foreach ($select_option as $value)
 					{
 						$type .='<option value="'. $value .'">'. $value .'</option>';
 					}
@@ -375,7 +375,7 @@ class admin_controller
 					$radio_option = explode(',', $row['options']);
 
 					$type = '';
-					foreach($radio_option as $value)
+					foreach ($radio_option as $value)
 					{
 						$type .='<input type="radio" name="templatefield_'. $row['name'] .'" value="'. $value . '" />&nbsp;'. $value .'&nbsp;&nbsp;';
 					}
@@ -384,7 +384,7 @@ class admin_controller
 					$check_option = explode(',', $row['options']);
 
 					$type = '';
-					foreach($check_option as $value)
+					foreach ($check_option as $value)
 					{
 						$type .='<input type="checkbox" name="templatefield_'. $row['name'].'[]" value="'. $value .'" />&nbsp;'. $value .'&nbsp;&nbsp;';
 					}

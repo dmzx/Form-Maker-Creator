@@ -136,7 +136,7 @@ class listener implements EventSubscriberInterface
 		if ($message === '')
 		{
 			$message = $this->grab_form_data($forum_id);
-			foreach($files as $key => $name)
+			foreach ($files as $key => $name)
 			{
 				$message_parser->parse_attachments($key, $mode, $forum_id, $submit, $preview, $refresh);
 			}
@@ -164,7 +164,7 @@ class listener implements EventSubscriberInterface
 
 		$sql = 'SELECT id, form_id, ndx_order, name, hint, type, mandatory, options, forum_name, forum_id
 			FROM ' . $this->table_formcreator . ' m, ' . FORUMS_TABLE . ' f
-			WHERE m.form_id = ' . (int)$forum_id . '
+			WHERE m.form_id = ' . (int) $forum_id . '
 				AND m.form_id = f.forum_id
 			ORDER BY ndx_order ASC';
 		$result = $this->db->sql_query($sql);
@@ -215,7 +215,7 @@ class listener implements EventSubscriberInterface
 					$entry = '<select ' . $type . $name . $id . $tabindex . $mandatory . $style . '>';
 					$entry .= '<option value="">----------------</option>';
 					$select_option = explode(',', $row['options']);
-					foreach($select_option as $value)
+					foreach ($select_option as $value)
 					{
 						 $entry .='<option value="'. $value .'">'. $value .'</option>';
 					}
@@ -225,7 +225,7 @@ class listener implements EventSubscriberInterface
 				case 'radiobuttons':
 					$radio_option = explode(',', $row['options']);
 					$entry = '';
-					foreach($radio_option as $value)
+					foreach ($radio_option as $value)
 					{
 						$entry .='<input type="radio" ' . $tabindex . $mandatory . $name . $id . '" value="'. $value .'"/>&nbsp;'. $value . '&nbsp;&nbsp;';
 					}
@@ -234,7 +234,7 @@ class listener implements EventSubscriberInterface
 				case 'checkbox':
 					$check_option = explode(',', $row['options']);
 					$entry = '';
-					foreach($check_option as $value)
+					foreach ($check_option as $value)
 					{
 						$entry .='<input ' . $type . $tabindex . $mandatory . ' name="templatefield_' . $row['name'] .'[]"' . $id . '" value="'. $value .'" />&nbsp;'. $value .'&nbsp;&nbsp;';
 					}
@@ -306,7 +306,7 @@ class listener implements EventSubscriberInterface
 
 		if (isset($files))
 		{
-			foreach($files as $name)
+			foreach ($files as $name)
 			{
 				$temp = $fileupload->handle_upload('files.types.form', 'upload');
 
@@ -395,6 +395,6 @@ class listener implements EventSubscriberInterface
 		{
 			return;
 		}
-		else return($appform_post);
+		else return ($appform_post);
 	}
 }
