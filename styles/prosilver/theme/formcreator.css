@@ -1,0 +1,84 @@
+
+.mandatory {
+	color: #FF0000;
+}
+.mand {
+	margin-bottom: 10px;
+	margin-left: 17.5em;
+	text-align:left;
+}
+.form_chk_msg {
+	margin-top: -2px; 
+	margin-bottom: 20px; 
+	margin-left: 17.5em; 
+	text-align:left;
+}
+
+pre {
+	font-family: Consolas, monospace;
+	font-size: 1em; 
+	overflow: auto
+}
+
+.panel.bg2 .inner .submit-buttons {
+	display: none;
+}
+
+.fbox {
+	background: #FFF none repeat-x 0 0;
+	background-repeat: repeat;
+	text-align:left;
+
+	margin: -20px 0 8px 140px;
+
+	/* if <br /> in code use
+	margin: -20px 0 0 150px;
+	*/
+
+	padding: 3px 3px 3px 5px;
+	
+	width: 500px;
+	overflow:auto;
+	height: auto;
+
+	border: solid 1px #E3E5E5;
+	box-shadow: 1px 1px 1px 1px #BBB;
+	//box-shadow: 2px 2px 2px 2px #BBB;
+	border-radius: 3px;
+	text-align: left;
+
+    white-space: pre-wrap;      /* CSS3 */   
+    white-space: -moz-pre-wrap; /* Firefox */    
+    white-space: -pre-wrap;     /* Opera <7 */   
+    white-space: -o-pre-wrap;   /* Opera 7 */    
+    word-wrap: break-word;      /* IE */
+}
+
+.att {
+	background: #FFF none repeat-x 0 0;
+	background-repeat: repeat;
+	text-align:left;
+	margin: -20px 0 8px 140px;
+	padding: 5px 2px 5px 5px;
+	width: 500px;
+	overflow:auto;
+	height: auto;
+	border: solid 1px #E3E5E5;
+	box-shadow: 1px 1px 1px 1px #BBB;
+	border-radius: 3px;
+	text-align: left;
+}
+
+.form {
+	width: 98%;
+	/*
+	background: #ECF1F3 none repeat-x 0 0;
+	padding: 15px 5px 5px 8px;
+	border: solid 1px #D7D9D9;
+	box-shadow: 1px 1px 1px 1px #BBB;
+	box-shadow: 2px 2px 2px 2px #BBB;
+	border-radius: 7px;
+	text-align:left;
+	overflow: auto;
+	*/
+}

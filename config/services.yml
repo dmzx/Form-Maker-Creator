@@ -1,0 +1,30 @@
+imports:
+    - { resource: tables.yml }
+services:
+    dmzx.formcreator.admin.controller:
+        class: dmzx\formcreator\controller\admin_controller
+        arguments:
+            - '@user'
+            - '@template'
+            - '@dbal.conn'
+            - '@request'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%dmzx.formcreator.table.formcreator%'
+    dmzx.formcreator.listener:
+        class: dmzx\formcreator\event\listener
+        arguments:
+            - '@user'
+            - '@template'
+            - '@dbal.conn'
+            - '@config'
+            - '@auth'
+            - '@controller.helper'
+            - '@cache'
+            - '@request'
+            - '%core.root_path%'
+            - '%core.php_ext%'
+            - '%dmzx.formcreator.table.formcreator%'
+            - '@?files.factory'
+        tags:
+            - { name: event.listener }       

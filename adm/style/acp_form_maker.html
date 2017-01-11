@@ -1,0 +1,176 @@
+<!-- INCLUDECSS form_mod.css -->
+<!-- INCLUDE overall_header.html -->
+<!-- INCLUDEJS jquery-2.1.3.min.js -->
+<!-- INCLUDEJS form_mod.js -->
+
+<div id="dvLoading"></div>
+<a name="maincontent"></a>
+
+<h1>{L_ACP_FORM_MAKER}&nbsp;{FORM_MAKER_VERS}</h1>
+
+<p id="info2" title="{L_HOW_TO_MORE}" onclick="ShowHide('info1');ShowHide('info2');" style="cursor:pointer;">{L_ACP_FORM_MAKER_EXPLAIN} <img id="info" alt="" /></p>
+
+<fieldset id="info1" style="display:none; border-radius: 5px; margin-top: 8px; width: 90%;">
+	<p>{L_HOW_TO}</p>
+	<hr />
+	<p style="cursor:pointer; float:right; margin-top: -35px;" onclick="ShowHide('info1');ShowHide('info2');">{L_HOW_TO_HIDE}</p>
+	<p>{L_ACP_FORM_MAKER_EXPLAIN_2}</p>
+</fieldset>
+
+<p>{L_ACP_FORM_MOD_NOTE}</p>
+
+<form method="post" action="{F_ADD_CONFIG}" id="acp_apply">
+
+<fieldset>
+	<legend>{L_ACP_FORM_CURRENT}</legend>
+	<dl>
+		<dt class="dt100"><label>{L_FORM_MANAGE}{L_COLON}</label> {L_FORM_MANAGE_EXPLAIN}</dt>
+	</dl>
+	<table cellspacing="1">
+		<thead>
+			<tr>
+				<th class="th_current"> {L_CURRENT_FORM}{L_COLON} &nbsp; &nbsp;
+					<select name="form_id" class="input" style="font-size: 11px" onchange="update_form();">
+					<!-- BEGIN forms -->
+						<option	name="form_id" {forms.SELECT} value="{forms.FORUM_ID}">({forms.FORUM_ID}) {forms.FORUM_NAME}</option>
+					<!-- END forms -->
+					</select>
+				</th>
+			</tr>
+		</thead>
+	</table>
+	<table cellspacing="1">
+		<thead>
+			<tr>
+				<th class="th_action">{L_ACTION}</th>
+				<th class="th_ndx">{L_NDX}</th>
+				<th class="th_type">{L_FORM_ELEMENT_TYPE}</th>
+				<th class="th_mand" title="{L_MANDATORY}">&#8730;</th>
+				<th class="th_name">{L_FORM_ELEMENT_NAME}</th>
+				<th class="th_hint">{L_FORM_ELEMENT_HINT}</th>
+				<th class="th_option">{L_FORM_ELEMENT_OPTIONS}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr><td></td></tr><!-- in order to validate I need this code -->
+			<!-- BEGIN form_template -->
+				<!-- IF ranks_row.S_ROW_COUNT is even -->
+			<tr class="row1">
+				<!-- ELSE -->
+			<tr class="row2">
+				<!-- ENDIF -->
+				<td class="th_action" style="padding: 1px;">
+					<span style="padding: 3px;">
+						<!-- IF form_template.NDX_ORDER <= 1 and not PREVIOUS_PAGE -->
+							{ICON_MOVE_UP_DISABLED}
+						<!-- ELSE -->
+							<a href="{form_template.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+						<!-- ENDIF -->
+
+						<!-- IF form_template.S_LAST_ROW and not NEXT_PAGE -->
+							{ICON_MOVE_DOWN_DISABLED}
+						<!-- ELSE -->
+							<a href="{form_template.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+						<!-- ENDIF -->
+
+						<a href="{form_template.U_DELETE}">{ICON_DELETE}</a>
+					</span>
+				</td>
+				<td class="th_com" title="{L_NDX_ORDER}">
+					<input style=" text-align:right;" size="2" maxlength="3" type="text" name="q_ndx_order[{form_template.ID}]" value="{form_template.NDX_ORDER}" />
+				</td>
+				<td class="td_132">
+					<select name="q_type[{form_template.ID}]" class="input" style="font-size: 11px" {form_template.DISABLED}>
+						<!-- BEGIN template_type -->
+						<option	value="{template_type.TYPE}"{template_type.SELECTED}>{template_type.TYPE}</option>
+						<!-- END template_type -->
+					</select>
+				</td>
+				<td class="td_20" title="{L_MANDATORY}">
+					<input style="cursor:pointer" type="checkbox" name="q_mandatory[{form_template.ID}]" value="1" {form_template.DISABLED} {form_template.CHECKED} />
+				</td>
+				<td class="td_02"><input style="width:97%" type="text" name="q_name[{form_template.ID}]" value="{form_template.NAME}" {form_template.DISABLED} /></td>
+				<td class="td_02"><input style="width:97%" type="text" name="q_hint[{form_template.ID}]" value="{form_template.HINT}"	{form_template.DISABLED} /></td>
+				<td class="td_02"><input style="width:99%" type="text" name="q_options[{form_template.ID}]" value="{form_template.OPTIONS}" {form_template.DISABLED} /></td>
+			</tr>
+			<!-- END form_template -->
+		</tbody>
+	</table>
+
+	<!-- IF ELEMENTS != '0' -->
+	<div class="div_0">
+		<input id="show2" style="display:inline; font-size:10px;" onclick="ShowHide('preview');ShowHide('show2');ShowHide('hide2');" type="button" value="{L_SHOW_PREVIEW}" class="button1" />
+		<input id="hide2" style="display:none;	font-size:10px;" onclick="ShowHide('preview');ShowHide('hide2');ShowHide('show2');" type="button" value="{L_HIDE_PREVIEW}" class="button1" />
+	</div>
+	<!-- ENDIF -->
+
+	<p class="quick"><input type="submit" name="update" id="update_button" value="{L_UPDATE}" class="button1" /></p>
+
+	<!-- IF ELEMENTS != '0' -->
+	<div id="preview" style="display:none; width:80%; margin-left: auto; margin-right:auto;">
+		<!-- INCLUDE forms/form_maker.html -->
+	</div>
+	<!-- ENDIF -->
+
+</fieldset>
+
+<!-- IF ELEMENTS == '0' -->
+<fieldset>
+	{L_FORM_NO_FORM}
+</fieldset>
+<!-- ENDIF -->
+
+<fieldset>
+<legend>{L_FORM_ADD_ITEM}</legend>
+	<table cellspacing="1">
+		<thead>
+			<tr>
+				<th class="th_type2">{L_FORM_ELEMENT_TYPE}</th>
+				<th class="th_mand" title="{L_MANDATORY}">&#8730;</th>
+				<th class="th_type3">{L_FORM_ELEMENT_NAME}</th>
+				<th class="th_type3">{L_FORM_ELEMENT_HINT}</th>
+				<th class="th_type4">{L_FORM_ELEMENT_OPTIONS}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="row1">
+				<td class="td_0">
+					<select name="add_type" class="input" id="add_type">
+						<option value="text">{L_FORM_INPUTBOX}</option>
+						<option value="textbox">{L_FORM_TXTBOX}</option>
+						<option value="selectbox">{L_FORM_SELECTBOX}</option>
+						<option value="radiobuttons">{L_FORM_RADIOBOX}</option>
+						<option value="checkbox">{L_FORM_CHECKBOX}</option>
+						<option value="email">{L_FORM_EMAILBOX}</option>
+						<option value="password">{L_FORM_PASSWORDBOX}</option>
+						<option value="url">{L_FORM_URLBOX}</option>
+						<option value="file">{L_FORM_ATTACH}</option>
+					</select>
+				</td>
+				<td class="td_20" title="{L_MANDATORY}">
+					<input style="cursor: pointer;" type="checkbox" name="mandatory" value="true" />
+				</td>
+				<td class="td_pad"><input style="width:97%" type="text" name="name" value="{L_FORM_ELEMENT_NAME}" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_FORM_ELEMENT_NAME}' };" /></td>
+				<td class="td_pad"><input style="width:97%" type="text" name="hint" value="{L_FORM_ELEMENT_HINT}" onclick="this.value ='';" onblur="if(this.value == '') { this.value = '{L_FORM_ELEMENT_HINT}' };" /></td>
+				<td class="td_pad"><input style="width:99%" type="text" name="options" value="" /></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="info0" style="padding-top: 10px; margin-bottom: -23px; display: none;">
+		<pre>{L_FORM_NEW_ITEM_EXPLAIN_2}</pre>
+		<input style="font-size:10px;" onclick="ShowHide('info0');ShowHide('show0');" type="button" value="{L_HIDE_FORM_INFO}" class="button1" />
+	</div>
+	<div id="show0" style="display: inline;">
+		<input style="font-size:10px;" onclick="ShowHide('info0');ShowHide('show0');" type="button" value="{L_SHOW_FORM_INFO}" class="button1" />
+	</div>
+
+	<p class="quick"><input type="submit" name="add" value="{L_ADD}" class="button1" /></p>
+	{S_FORM_TOKEN}
+</fieldset>
+
+</form>
+
+{REPORT}
+
+<!-- INCLUDE overall_footer.html -->

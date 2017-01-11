@@ -1,0 +1,2 @@
+parameters:
+    dmzx.formcreator.table.formcreator: %core.table_prefix%form_maker

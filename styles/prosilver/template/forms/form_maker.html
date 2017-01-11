@@ -1,0 +1,73 @@
+<script type="text/javascript">
+// <![CDATA[
+
+/* This is part of the form_maker mod for phpBB3 copyright phpbbireland.com 2012 */
+
+function postform_check()
+{
+	if (document.forms.postform.subject.value == '')
+	{
+		alert('{LA_SUBJECT_REQUIRED}');
+		document.forms.postform.subject.focus();
+		return(false);
+	}
+}
+
+// ]]>
+</script>
+
+<!-- IF MODE == 'post' -->
+<div id="thisform" style="display:none; width:auto; margin-left:auto; margin-right:auto;" class="panels">
+	<div class="inner">
+		<div class="mand"><span class="mandatory">*</span> {L_MANDATORY}</div>
+		<fieldset class="fields2">
+			<!-- BEGIN form_apptemplate -->
+			<dl>
+				<dt><label for="templatefield_{form_apptemplate.NAME}">{form_apptemplate.NAME}{L_COLON}</label>{form_apptemplate.MANDATORY}</dt>
+				<dd>{form_apptemplate.TYPE}</dd>
+			</dl>
+			<!-- END form_apptemplate -->
+		</fieldset>
+		<div class="form_chk_msg">{L_CHECKBOX_MSG}</div>
+	</div>
+	<div class="panels">
+		<div class="inner">
+			<fieldset class="submit-buttons">
+				<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" onclick="return postform_check();" />&nbsp;
+				<input type="reset" name="reset" value="{L_RESET}" class="button2" />
+				{S_FORM_TOKEN}
+				<input type="button" class="button2" accesskey="f" name="useform" value="{L_CLOSE_FORM}" style="font-weight:normal; width: 50px" onclick="toggle_validation();ShowHide('thisform','message-box');ShowHide('smiley-box');ShowHide('form_hide','format-postingbuttons');" title="{L_CLOSE_FORM_EXPLAIN}" />
+			</fieldset>
+		</div>
+	</div>
+</div>
+
+<div id="lblValues"></div>
+
+<script type="text/javascript">
+// <![CDATA[
+function toggle_validation()
+{
+	/*
+	Turn off postform html5 validation so we can switch on/off for our new form...
+	Otherwise posting for new topics (in this forum) will only work if the new form is used...
+	*/
+
+	var $_hidden = 0;
+	var $_empty = 0;
+	var myform = 'postform';
+
+	$_hidden = is_hidden('thisform');
+
+	if ($_hidden == 0)
+	{
+		document.forms.postform.noValidate=true;
+	}
+	else
+	{
+		document.forms.postform.noValidate=false;
+	}
+}
+// ]]>
+</script>
+<!-- ENDIF -->

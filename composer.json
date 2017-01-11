@@ -1,0 +1,41 @@
+{
+	"name": "dmzx/formcreator",
+	"type": "phpbb-extension",
+	"description": "Create forms to collect data from you members in any forum (one form per forum)",
+	"homepage": "http://www.dmzx-web.net",
+	"version": "1.0.0-dev",
+	"time": "2017-01-09",
+	"keywords": ["phpbb", "extension", "formcreator"],
+	"license": "GPL-2.0",
+	"authors": [
+		{
+			"name": "dmzx",
+			"homepage": "http://www.dmzx-web.net",
+			"email": "info@dmzx-web.net",
+			"role": "Extension Developer"
+		},
+		{
+			"name": "michaelo",
+			"homepage": "http://www.phpbbreland.com/",
+			"email": "o2l@eircom.net",
+			"role": "Original MOD author"
+		}
+	],
+	"require": {
+		"php": ">=5.3.3"
+	},
+	"require-dev": {
+		"phpbb/epv": "dev-master"
+	},
+	"extra": {
+		"display-name": "Form Maker/Creator",
+		"soft-require": {
+			"phpbb/phpbb": ">=3.2.0-a1,<3.3.0@dev"
+		},
+		"version-check": {
+			"host": "www.dmzx-web.net",
+			"directory": "/versions",
+			"filename": "formcreator_32x_version.json"
+		}
+	}
+}
