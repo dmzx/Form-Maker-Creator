@@ -263,6 +263,7 @@ class listener implements EventSubscriberInterface
 
 			$this->template->assign_vars(array(
 				'MODE'	=> $mode,
+				'S_FORM_MAKER'	=> true,
 			));
 		}
 		$this->db->sql_freeresult($result);
