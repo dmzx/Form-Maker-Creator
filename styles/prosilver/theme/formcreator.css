@@ -20,10 +20,6 @@ pre {
 	overflow: auto
 }
 
-.panel.bg2 .inner .submit-buttons {
-	display: none;
-}
-
 .fbox {
 	background: #FFF none repeat-x 0 0;
 	background-repeat: repeat;
