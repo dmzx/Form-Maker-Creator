@@ -1,15 +1,15 @@
-<!-- IF not S_SHOW_DRAFTS and not $SIG_EDIT eq 1 and S_FORM_MAKER -->
+{% if not S_SHOW_DRAFTS and not definition.SIG_EDIT eq 1 and S_FORM_MAKER %}
 <div id="form_hide" class="panels">
 	<div class="inner">
 		<fieldset class="submit-buttons">
-			{S_HIDDEN_ADDRESS_FIELD}
-			{S_HIDDEN_FIELDS}
-			<!-- EVENT posting_editor_submit_buttons -->
-			<!-- IF S_HAS_DRAFTS --><input type="submit" accesskey="d" tabindex="8" name="load" value="{L_LOAD_DRAFT}" class="button2" onclick="load_draft = true;" />&nbsp; <!-- ENDIF -->
-			<!-- IF S_SAVE_ALLOWED --><input type="submit" accesskey="k" tabindex="7" name="save" value="{L_SAVE_DRAFT}" class="button2" />&nbsp; <!-- ENDIF -->
-			<input type="submit" tabindex="5" name="preview" value="{L_PREVIEW}" class="button1"<!-- IF not S_PRIVMSGS --> onclick="document.getElementById('postform').action += '#preview';"<!-- ENDIF --> />&nbsp;
-			<input type="submit" accesskey="s" tabindex="6" name="post" value="{L_SUBMIT}" class="button1 default-submit-action" />&nbsp;
+			{{ S_HIDDEN_ADDRESS_FIELD }}
+			{{ S_HIDDEN_FIELDS }}
+			{% EVENT posting_editor_submit_buttons %}
+			{% if S_HAS_DRAFTS %}<input type="submit" accesskey="d" tabindex="8" name="load" value="{{ lang('LOAD_DRAFT') }}" class="button2" onclick="load_draft = true;" />&nbsp; {% endif %}
+			{% if S_SAVE_ALLOWED %}<input type="submit" accesskey="k" tabindex="7" name="save" value="{{ lang('SAVE_DRAFT') }}" class="button2" />&nbsp; {% endif %}
+			<input type="submit" tabindex="5" name="preview" value="{{ lang('PREVIEW') }}" class="button1"{% if not S_PRIVMSGS %} onclick="document.getElementById('postform').action += '#preview';"{% endif %} />&nbsp;
+			<input type="submit" accesskey="s" tabindex="6" name="post" value="{{ lang('SUBMIT') }}" class="button1 default-submit-action" />&nbsp;
 		</fieldset>
 	</div>
 </div>
-<!-- ENDIF -->
+{% endif %}

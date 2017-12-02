@@ -1,21 +1,21 @@
 <fieldset class="fields2">
-	{L_FORM_DETAILS}
+	{{ lang('FORM_DETAILS') }}
 </fieldset>
 
 <fieldset class="fields2">
-	<!-- BEGIN form_apptemplate -->
+	{% for form_apptemplate in loops.form_apptemplate %}
 	<dl>
 		<dt class="dt10">
-			<label for="templatefield_{form_apptemplate.NAME}">{form_apptemplate.NAME}{L_COLON}</label>{form_apptemplate.MANDATORY}
+			<label for="templatefield_{{ form_apptemplate.NAME }}">{{ form_apptemplate.NAME }}{{ lang('COLON') }}</label>{{ form_apptemplate.MANDATORY }}
 		</dt>
-		<dd class="dd10">{form_apptemplate.TYPE}</dd>
+		<dd class="dd10">{{ form_apptemplate.TYPE }}</dd>
 	</dl>
-	<!-- END form_apptemplate -->
-	<div class="div_1">* {L_MANDATORY}</div>
+	{% endfor %}
+	<div class="div_1">* {{ lang('MANDATORY') }}</div>
 </fieldset>
 
 <fieldset class="submit-buttons">
 <p>
-	{L_FORMS_MOD_SAMPLE}
+	{{ lang('FORMS_MOD_SAMPLE') }}
 </p>
 </fieldset>
